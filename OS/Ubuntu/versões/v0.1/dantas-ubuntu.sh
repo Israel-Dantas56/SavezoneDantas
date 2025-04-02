@@ -29,28 +29,11 @@ echo "";
 echo "Aguarde..";
 sleep 3
 
-#excluindo o script dantas-ubuntu.sh
-rm -f dantas-ubuntu.sh
-
 #Criando a pasta TEMP 
 pasta_temp="/temp"
 if [[ ! -d $pasta_temp ]]; then
     mkdir "$pasta_temp"
 fi
-
-#Criando link simbolico da pasta do usuario
-usuario=$(pwd)
-ln -sf $usuario $pasta_temp/usuario
-
-#Criando link simbolico da pasta /.mozilla
-mozilla=$usuario/.mozilla
-if [[ -d $mozilla ]]; then
-    ln -sf "$mozilla" "$pasta_temp/mozilla"
-else
-    echo "Diretorio .mozilla nao encontrado. Link simbolico nao criado."
-fi
-
-cd "$pasta_temp" || { echo "Nao foi possivel mudar para o diretorio $pasta_temp."; exit 1; }
 
 #Download do script de atualização
 sudo wget -c https://github.com/Israel-Dantas56/SavezoneDantas/script/menu.sh && sudo chmod +x menu.sh && sudo bash menu.sh
